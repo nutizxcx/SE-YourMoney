@@ -83,3 +83,12 @@
     left: 0;
   }
   
+  .id-onnav{
+    background-color: transparent;
+    height: 5vh;
+    width: 50vw;
+    z-index: 2;
+    position: fixed;
+    top: 2%;
+    margin-left: 55%;
+  }
