@@ -1,0 +1,10 @@
+.BG_admin{
+    font-family: 'Prompt', sans-serif;
+    background-color:white;
+    background-image: url(../image/m.png);
+    background-repeat: no-repeat;
+    background-position: -180px top;
+    background-size: 500px;
+    height: 100vh;
+
+  }

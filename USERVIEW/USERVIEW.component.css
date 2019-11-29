@@ -1,0 +1,26 @@
+  .BG_HOME{
+    font-family: 'Prompt', sans-serif;
+    background-color:white;
+    background-image: url(../image/m.png);
+    background-repeat: no-repeat;
+    background-position: -180px;
+    background-size: 500px;
+  }
+
+  .BG_login{
+    background-color:black;
+    background-image: url(image/m.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px;
+    height: 100%;
+  }
+  
+  .BG_regis{
+    background-color:black;
+    background-image: url(image/m.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 170%;
+    height: 100%;
+  }
