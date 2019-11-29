@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+
+#body{
+    margin-top: 15%;
+    font-family: 'Prompt', sans-serif;
+}
+#boxall{
+    display: block;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 15px 5px rgba(126, 126, 126, 0.1);
+    width: 90vw;
+}
+
+.Page-box-title{
+    background-color: transparent;
+    width: 100vw;
+}
+
+.page-title{
+    font-size: 25px;
+    color: black;
+    padding: 0 0 0 15px;
+    font-weight: bold;
+}
+
+.fas{
+    margin-left: 15px;
+}
+
+#InputName_M{
+    display: block;
+    margin: auto;
+    width: 260px;
+    padding-left: 5%;
+}
+
+#Inputvalue_M{
+    display: block;
+    margin: auto;
+    width: 260px;
+    padding-left: 5%;
+}
+
+#Inputdate{
+    font-family: 'Prompt', sans-serif;
+    display: block;
+    margin: auto;
+    font-size: 14px;
+    width: 260px;
+}
+
+.modal-title{
+    font-size: 16px;
+}
+
+label{
+    margin-top: 4px;
+}
+
+input{
+    padding: 2px;
+    font-size: 13px;
+}
+
+#submit{
+    display: block;
+    /* margin: auto; */
+    /* margin-top: 5%; */
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Prompt', sans-serif;
+    color: ivory;
+    outline: none;
+    border: none;
+    padding: 3%;
+    width: 80px;
+    background-color:#1AA6B7;
+    cursor: pointer;
+}
+
+#exampleModalCenter{
+    font-family: 'Prompt', sans-serif;
+}
+
+#footer{
+    font-size: 12px;
+}
+
+#formall{
+    margin-bottom: 5%;
+}
+
+.alert{
+    font-size: small;
+    height: 20px;
+    padding: 0%;
+    margin-bottom: 0%;
+}
+
+#text-alert{
+    margin-left: 5%;
+    text-size-adjust: 8px;
+}
+
+#submitModal{
+    background-color:#1AA6B7;
+}

@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+
+#body{
+    margin-top: 15%;
+    font-family: 'Prompt', sans-serif;
+}
+#boxall{
+    display: block;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 15px 5px rgba(126, 126, 126, 0.1);
+    width: 90vw;
+}
+#block1{
+    display: block;
+    margin: auto;
+    margin-top: 3%;
+    border-radius: 20px;
+    border: 1px solid	#808080;
+    background-color: #daecf3;
+    padding: 5%;
+    width: 280px;
+    
+}
+
+.Page-box-title{
+    background-color: transparent;
+    width: 100vw;
+}
+
+.page-title{
+    font-size: 25px;
+    color: black;
+    padding: 0 0 0 15px;
+    font-weight: bold;
+}
+#head{
+    font-weight: bold;
+}
+#text1{
+    margin: 3px;
+    font-size: 12px;
+}
+#text2{
+    float: right;
+    
+}
+#text3{
+    float: right;
+
+}
+#header{
+    font-size: 20px;
+    font-weight: bold;
+}
+#delete{
+    margin-left: 70%;
+   
+}
+#add{
+    margin: 5px;
+    font-size: 14px;
+    margin-left: 55%;
+}
+
+.empty{
+    display: none;
+}
