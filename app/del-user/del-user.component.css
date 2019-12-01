@@ -1,0 +1,52 @@
+.deleteUser{
+  /* width:100%;
+  height:100%;
+  position:absolute; */
+  width:90%;
+  margin: 5% auto 10% auto;
+  padding: 0 0 15% 0 ;
+  box-shadow: 1px 1px 10px 1px #888888;
+  font-family: "Athiti", sans-serif;
+  background-color: white;
+}
+
+.allUser{
+  margin: 0;
+  padding: 0;
+  background-color: #022D41;
+  color: white;
+}
+
+.searchButton{
+  background: rgba(196, 196, 196, 0.2);
+  background-image: url('https://images.vexels.com/media/users/3/132068/isolated/preview/f9bb81e576c1a361c61a8c08945b2c48-search-icon-by-vexels.png');
+  background-size: 4%;
+  background-position: 3.5%;
+  background-repeat: no-repeat;
+  border: 0px;
+  border-radius: 8px;
+  padding: 1.5% 3% 1.5% 9%;
+  margin: 5% 0 0 0;
+  font-size: 11px;
+  width: 100%;
+}
+
+.accountList{
+  padding: 0 4.5%;
+}
+
+.accountsName{
+  border: 0.4px solid #C4C4C4;
+  box-sizing: border-box;
+  padding: 4% 0 4% 5%;
+}
+
+.accountsName:hover{
+  background-color: #022D41;
+  color:white;
+}
+
+.accountSelected{
+  background-color: #022D41;
+  color:white;
+}

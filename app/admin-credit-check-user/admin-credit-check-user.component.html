@@ -1,0 +1,123 @@
+
+
+    <div class="Page-box-title" >
+
+        <div class="page-title" style="margin-bottom: 3%;">
+            <a href="#" style="margin-right:3% ; font-size: large; color: black;"> <i class="fas fa-arrow-left"></i> </a>
+            <span>สินเชื่อ</span>
+        </div>
+
+    </div>
+
+    <div class="BOX_Title ">
+
+            <div class="Head_Box">
+                <div style="padding: 5% 0 0 5%;">
+                    <span>จำนวนผู้ใช้งานที่มีสินเชื่อนี้ทั้งหมด</span>
+                    <div style="display: flex;">
+                        <h3>{{ownedUsers_amount}}</h3>
+                        <h4 style="padding: 1% 0 0 5%;">คน</h4>
+                    </div>
+                    <span>อัพเดทครั้งล่าสุดเมื่อ 06.02 น.</span>
+                </div>
+            </div>
+            <div class="CreditInfomation" style="margin-top: 5%; height: 30%;">
+                <span>{{creditData.credit_name}}</span>
+                <div style="display: flex; font-size: small;">
+                    <span>{{creditData.company_name}}</span>
+                    <a (click)="editCredit(creditData.credit_id)" style="color: red; margin-left: 60%; ">แก้ไข</a>
+                </div>
+
+                <div style="display: flex; margin-top: 2%;">
+                    <div class="box-type">
+                            <div class="CreditType">
+                                    <span>
+                                        ประเภท
+                                    </span>
+                                    <br>
+                                    <span>
+                                        ระยะเวลาการกู้
+                                    </span>
+                                    <br>
+                                    <span>
+                                        วงเงินกู้
+                                    </span>
+                                    <br>
+                                    <br>
+                                    <span>
+                                        รายได้ขั้นต่ำ
+                                    </span>
+                                    <br>
+                                    <span>
+                                        ดอกเบี้ย
+                                    </span>
+
+                            </div>
+                    </div>
+
+                    <div class="box-info">
+                            <div class="information">
+                                    <span>
+                                        {{creditData.credit_type}}
+                                    </span>
+                                    <br>
+                                    <span>
+                                        {{creditData.time_period}}
+                                    </span>
+                                    <br>
+                                    <span>
+                                        {{creditData.credit_limit}}
+                                    </span>
+                                    <br>
+                                    <span>
+                                        {{creditData.credit_minimum_income}}
+                                    </span>
+                                    <br>
+                                    <span>
+                                        {{creditData.credit_interest}}
+                                    </span>
+                            </div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- <a href="#" style="padding: 100% 0 0 90%;"> <i class="fas fa-filter"></i> </a> -->
+
+            </div>
+
+            <div class="d-flex align-items-center" style='margin-top:3%;'>
+                <form class="form-inline"  class="d-flex align-items-center justify-content-center" style="width:100%;position:relative;margin:0;">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="border-radius: 100px; ">
+                        <label class="d-flex align-items-center justify-content-center" style="position:absolute;top:50%;right:20px;transform: translate(0, -50%);"><i class="fas fa-search"></i></label>
+                </form>
+          </div>
+
+            <div style="margin-top:10%;">
+              <h6 style='margin-left: 6%;'>ผู้ใช้งานที่ซื้อสินเชื่อนี้ทั้งหมด</h6>
+                    <div class="block_table" style="display: flex;"  *ngFor="let account of ownedUsers">
+                        <div class="block_credit" style="width:35%;">
+                            <div style="padding: 12% 0 0 10%;">
+                                    <div style="font-size: medium;">
+                                        <span>{{account.username}}</span>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="block_percent d-flex align-items-center justify-content-center" style="display: flex;">
+                            <div style='line-height: 0.3em;'>
+                                    <p style='font-size: 10px;'> ราคาสินเชื่อทั้งหมด </p>
+                                    <span style="font-size: 15px;"> {{account.total_payment}} บาท</span>
+                            </div>
+                            <div style="padding: 0 0 0 10%;"><i class="fas fa-angle-right"></i></div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+        </div>
+

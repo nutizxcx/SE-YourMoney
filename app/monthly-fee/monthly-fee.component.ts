@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { YourMoneyService } from '../service/your-money.service';
+import { Server } from '../const/server';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-monthly-fee',
@@ -7,26 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonthlyFeeComponent implements OnInit {
 
-   // isEmpty = false;
-  // title = 'ไม่มีค่าบริการรายเดือน';
-  // var data;
+  public monthly_fee;
+  public isEmpty = false;
+  public data;
 
-// constructor(private http: HttpClient){}
 
-ngOnInit(){
-//   this.getAPIService(){
-//     res => {
-//       this.data = res;
-//       if(this.data.length == 0){
-//         this.isEmpty = true;
-//       }
-//     }, err => {
-//       console.log(err);
-//     }
-//   }
-// }
-// getAPIService(url: string) {
-//   return this.http.get<any>(url);
-}
+  constructor(private service: YourMoneyService, private cookie: CookieService, private router: Router) { }
+
+  ngOnInit() {
+    this.data = {username:this.cookie.get('username'), mode:1};
+    this.service.postAPIService(Server.url, JSON.stringify(this.data))
+    .subscribe(
+      res =>{
+        console.log(res);
+        this.monthly_fee = res;
+        console.log('monthly fee : ' + this.monthly_fee[0].fee_period);
+
+      }, err=>{
+        console.log(err);
+      }
+
+    );
+  }
+
+  delMonthlyFee(){
+    this.data = {username:this.cookie.get('username'),fee_id: this.monthly_fee.fee_id , mode:2};
+    this.service.postAPIService(Server.url, JSON.stringify(this.data))
+    .subscribe(
+      res =>{
+        console.log(res);
+      }, err=>{
+        console.log(err);
+      }
+
+    );
+  }
+
+  chooseMonthlyFee(fee_id){
+    this.router.navigate(['/edit-monthly-fee',fee_id]);
+
+  }
+
 
 }

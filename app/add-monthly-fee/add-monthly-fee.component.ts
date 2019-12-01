@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { YourMoneyService } from '../service/your-money.service';
+import { Server } from '../const/server';
 
 @Component({
   selector: 'app-add-monthly-fee',
@@ -9,26 +12,50 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class AddMonthlyFeeComponent implements OnInit {
 
   monthlyfeeForm: FormGroup;
-  responseStr;
   isValid1 = true;
   isValid2 = true;
   isValid3 = true;
   isValid4 = true;
-  modal;
   submit = false;
   enable = false;
+  data;
 
 
-  constructor( private formBuilder: FormBuilder) {
+  constructor(private cookie: CookieService, private service: YourMoneyService) {
     this.monthlyfeeForm = new FormGroup({
     nameMonthlyfee: new FormControl("",[Validators.required]),
     valueMonthlyfee: new FormControl("",[Validators.required]),
     dateMonthlyfee: new FormControl("",[Validators.required]),
     typeMonthlyfee: new FormControl("",[Validators.required])
-  }) 
+  })
 }
 
   ngOnInit() {
+  }
+
+  add_monthly_fee(){
+
+    this.data = {username: this.cookie.get('username'),
+                 fee_type: this.monthlyfeeForm.get('typeMonthlyfee').value,
+                 fee_name: this.monthlyfeeForm.get('nameMonthlyfee').value,
+                 fee_period: this.monthlyfeeForm.get('dateMonthlyfee').value,
+                 fee_price: this.monthlyfeeForm.get('valueMonthlyfee').value};
+    console.log(this.data);
+    this.service.postAPIService(Server.url, JSON.stringify(this.data))
+    .subscribe(
+      res =>{
+        console.log(res);
+      },err =>{
+        console.log(err);
+      }
+    );
+  }
+
+
+  formConfirm(){
+    if(this.monthlyfeeForm.valid){
+      this.submit = true;
+    }
   }
 
   formDisable(){
@@ -46,7 +73,7 @@ export class AddMonthlyFeeComponent implements OnInit {
     if(this.monthlyfeeForm.get('nameMonthlyfee').invalid){
       this.isValid1 = false;
     }else{
-      this.isValid1 = true; 
+      this.isValid1 = true;
     }
     if (this.monthlyfeeForm.get('valueMonthlyfee').invalid) {
       this.isValid2 = false;
@@ -66,6 +93,8 @@ export class AddMonthlyFeeComponent implements OnInit {
       this.submit = false;
     }
 
+
   }
+
 
 }

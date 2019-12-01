@@ -1,0 +1,29 @@
+<h3 style='font-family: "Athiti", sans-serif; margin:7% 0 0 5%; '>บัญชีผู้ใช้</h3>
+<div class='deleteUser'>
+
+  <div class="allUser">
+    <p style='padding:3% 0 0 0; margin:0 0 0 3%;'>จำนวน user ที่ลงทะเบียนทั้งหมด</p>
+    <h1 style='padding:0 0 0 0; margin:0 0 0 3%;'>{{accountAmount}}<span style='margin-left: 5%;'>คน</span></h1>
+    <p style='padding:0 0 3% 0; margin:0 0 0 3%;'>อัพเดทครั้งล่าสุด ณ {{updateTime}} น.</p>
+  </div>
+  <div class='accountList'>
+
+    <input class='searchButton' placeholder="ค้นหา">
+
+    <div style='text-align: right;'>
+        <img src='http://cdn.onlinewebfonts.com/svg/img_50220.png' style='width:5%; margin: 3% 5% 3% 0;' (click)='delUser()'>
+    </div>
+
+    <div [ngClass]='account.selected ? "accountSelected" :"accounts"' *ngFor="let account of accounts ; let i = index;">
+
+            <div class='accountsName'>
+                <input type='checkbox' style='margin-right: 5%;' [(ngModel)]="account.selected"  [checked]="account.selected">
+                <label style='margin:0; padding:0;'>{{account.username}}</label>
+                <a   style='margin:0; padding:0; font-size: 8px; float: right; text-decoration-line: underline; line-height: 24px; margin-right: 5%;' (click)='accountInfo(account.username)' >การเชื่อมต่อบัญชีของ user</a>
+            </div>
+
+    </div>
+  </div>
+
+
+</div>

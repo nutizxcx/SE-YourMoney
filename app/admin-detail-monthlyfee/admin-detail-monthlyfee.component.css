@@ -2,11 +2,12 @@
 
 #body{
     font-family: 'Prompt', sans-serif;
-    margin-top: 15%;
+    margin-top: 7%;
 }
 .Page-box-title{
     background-color: transparent;
     width: 100vw;
+    margin-bottom: 3%;
 }
 
 .page-title{
@@ -32,7 +33,7 @@
 }
 label{
     margin: auto;
-} 
+}
 p{
     margin: auto;
 }

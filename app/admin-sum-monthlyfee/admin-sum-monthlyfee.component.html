@@ -5,7 +5,7 @@
     <div class="BOX_Title">
         <div class="Head_Box">
             <label>จำนวนค่าบริการรายเดือนทั้งหมด</label>
-            <p><label><span style="font-size: 30px;">60,562</span> รายการ</label></p>
+            <p><label><span style="font-size: 30px;">{{monthly_types_amount}}</span> รายการ</label></p>
             <label>อัพเดทครั้งล่าสุด ณ 13.45 น.</label>
         </div>
         <div class="boxall">
@@ -17,18 +17,11 @@
             </div>
         </div> -->
             <div class="col-xs-12">
-                <div class="box_detail">
-                    <label>เอนเตอร์เทนเม้นท์</label>
-                    <i routerLink="/admin-detail-monthlyfee" id="arrow" class="fas fa-angle-right"></i>
+                <div class="box_detail" *ngFor="let type of monthly_types" (click)="monthly_type_detail(type.fee_type)">
+                  <label>{{type.fee_type}}</label>
+                  <i id="arrow" class="fas fa-angle-right"></i>
                 </div>
-                <div class="box_detail">
-                    <label>ค่าโทรศัพท์</label>
-                    <i id="arrow" class="fas fa-angle-right"></i>
-                </div>
-                <div class="box_detail">
-                    <label>ค่าบัตรเครดิต</label>
-                    <i id="arrow" class="fas fa-angle-right"></i>
-                </div>
+
             </div>
         </div>
     </div>

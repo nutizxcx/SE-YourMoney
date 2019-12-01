@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { YourMoneyService } from '../service/your-money.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Server } from '../const/server';
+import { Location } from '@angular/common';
+import { stringify } from 'querystring';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-monthly-fee',
@@ -9,17 +15,21 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class EditMonthlyFeeComponent implements OnInit {
 
   monthlyfeeForm: FormGroup;
-  responseStr;
   isValid1 = true;
   isValid2 = true;
   isValid3 = true;
   isValid4 = true;
-  modal;
+  public data;
   submit = false;
   enable = false;
-
-  constructor() { 
+  feeId: any;
+  monthly_fee_detail = {fee_name:'', fee_price: 0};
+  url;
+  constructor(private service:YourMoneyService, private cookie:CookieService, private location: Location, private route: ActivatedRoute) {
+    this.feeId = this.route.snapshot.paramMap.get('feeId');
+    location.replaceState('/edit-monthly-fee');
     this.monthlyfeeForm = new FormGroup({
+      typeMonthlyfee: new FormControl("",[Validators.required]),
       nameMonthlyfee: new FormControl("",[Validators.required]),
       valueMonthlyfee: new FormControl("",[Validators.required]),
       dateMonthlyfee: new FormControl("",[Validators.required])
@@ -27,9 +37,44 @@ export class EditMonthlyFeeComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.data = {username: this.cookie.get('username'), fee_id: this.feeId, mode: 2};
+    console.log("request data: " + this.data.fee_id);
+    this.service.postAPIService(Server.url, JSON.stringify(this.data))
+    .subscribe(
+      res => {
+        console.log(res);
+        this.monthly_fee_detail = res;
+        this.url = '/edit-monthly-fee/' + this.feeId;
+        this.location.replaceState(this.url);
+      },err => {
+        console.log(err);
+      }
+    )
   }
 
-  
+  edit_monthly_fee(){
+    this.url = '/edit-monthly-fee/';
+    this.location.replaceState(this.url);
+    this.data = {username: this.cookie.get('username'),
+                 fee_period: this.monthlyfeeForm.get('dateMonthlyfee').value,
+                 fee_type: this.monthlyfeeForm.get('typeMonthlyfee').value,
+                 fee_id: this.feeId ,
+                 fee_name: this.monthlyfeeForm.get('nameMonthlyfee').value,
+                 fee_price: this.monthlyfeeForm.get('valueMonthlyfee').value ,
+                 mode: 1};
+    console.log(this.data);
+    this.service.postAPIService(Server.url, JSON.stringify(this.data))
+    .subscribe(
+      res => {
+          console.log(res);
+          this.url = '/edit-monthly-fee/' + this.feeId;
+        this.location.replaceState(this.url);
+      }, err => {
+          console.log(err);
+      }
+    );
+  }
+
 
   formDisable(){
     if(this.monthlyfeeForm.get('typeMonthlyfee').invalid){
@@ -46,7 +91,7 @@ export class EditMonthlyFeeComponent implements OnInit {
     if(this.monthlyfeeForm.get('nameMonthlyfee').invalid){
       this.isValid1 = false;
     }else{
-      this.isValid1 = true; 
+      this.isValid1 = true;
     }
     if (this.monthlyfeeForm.get('valueMonthlyfee').invalid) {
       this.isValid2 = false;
@@ -67,5 +112,4 @@ export class EditMonthlyFeeComponent implements OnInit {
     }
 
   }
-  
 }

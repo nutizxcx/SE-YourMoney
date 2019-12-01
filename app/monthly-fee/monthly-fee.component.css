@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
 
 #body{
-    margin-top: 15%;
+    margin-top: 5%;
     font-family: 'Prompt', sans-serif;
 }
 #boxall{
@@ -14,14 +14,12 @@
 }
 #block1{
     display: block;
-    margin: auto;
-    margin-top: 3%;
+    margin: 2.5% auto;
     border-radius: 20px;
     border: 1px solid	#808080;
     background-color: #daecf3;
     padding: 5%;
-    width: 280px;
-    
+
 }
 
 .Page-box-title{
@@ -39,24 +37,26 @@
     font-weight: bold;
 }
 #text1{
+    font-size: 13px;
     margin: 3px;
-    font-size: 12px;
+    line-height: 0.5em;
 }
 #text2{
     float: right;
-    
+    line-height: 0.5em;
+
 }
 #text3{
     float: right;
-
+    line-height: 0.5em;
 }
 #header{
     font-size: 20px;
     font-weight: bold;
 }
 #delete{
-    margin-left: 70%;
-   
+    float: right;
+
 }
 #add{
     margin: 5px;

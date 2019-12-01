@@ -1,0 +1,39 @@
+<div class='userDetail'>
+
+<!-- <div class="userDetailBox">
+  <p>จำนวน user ที่ลงทะเบียนทั้งหมด</p>
+  <h1>{{accountAmount}}</h1>
+  <p>อัพเดทครั้งล่าสุด ณ {{updateTime}} น.</p>
+</div> -->
+<div class='accountList'>
+  <!-- <input class='searchButton' placeholder="ค้นหา"> -->
+  <h2>{{profileData['username']}}</h2>
+  <div class='profileData' style="line-height: 0.5em;">
+    <p>คุณ <span>{{profileData['firstname']}} {{profileData['lastname']}}</span></p>
+    <p>อาชีพ <span>{{profileData['career']}}</span></p>
+    <p>เงินเดือน <span>{{profileData['monthly_income']}}</span></p>
+    <p>อีเมล์ <span>{{profileData['email']}}</span></p>
+  </div>
+  <br>
+  <div *ngIf="haveBankAccountData">
+    <p>บัญชีธนาคารทั้งหมดของ <span>{{profileData['username']}}</span></p>
+    <div  *ngFor="let bankAccount of bankAccountData" style='padding: 5% 5%; background-color: #DAECF3; border: 0.4px solid #000000;'>
+      <label>{{bankAccount.name_in_bank}}</label>
+      <label style="float: right; margin-right: 3%;">{{bankAccount.bank_name}}</label>
+    </div>
+  </div>
+
+  <br>
+
+  <div *ngIf="haveMonthlyFeeData">
+    <p>ค่าบริการรายเดือน</p>
+    <div *ngFor="let monthlyFee of monthlyFeeData" style='line-height:1em; padding: 5% 5%; margin: 3% 0; background-color: #DAECF3; border: 1px solid #C4C4C4; border-radius: 10px;'>
+      <h3>{{monthlyFee.fee_name}}</h3>
+      <label >ค่าบริการ</label> <label style="float: right; margin-right: 3%;"> {{monthlyFee.fee_price}} บาท/เดือน</label>
+      <p>ชำระภายในวันที่ {{monthlyFee.fee_period}}</p>
+    </div>
+  </div>
+
+</div>
+
+</div>

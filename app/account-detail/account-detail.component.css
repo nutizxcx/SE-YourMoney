@@ -1,0 +1,16 @@
+.userDetailBox{
+  margin: 0;
+  padding: 0;
+  background-color: #022D41;
+  color: white;
+
+}
+
+.userDetail{
+  width:90%;
+  margin: 10% auto;
+  padding: 5% 4.5% 5% 4.5% ;
+  box-shadow: 1px 1px 10px 1px #888888;
+  font-family: "Athiti", sans-serif;
+  background-color: white;
+}
