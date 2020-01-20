@@ -1,0 +1,52 @@
+
+<button id="openModalButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style='display: none;'></button>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style='text-align: center;'>
+        <p style='margin: 0; padding: 0; font-size: 13px;'>{{feedbackStr}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div style='background-color: black;' class='backButton'>
+  <img src='https://icon-library.net/images/white-back-icon/white-back-icon-7.jpg' style='height:13px;'>
+  <a routerLink='/login' style='font-family: "Athiti", sans-serif; color:white; margin-left: 10px;'>ย้อนกลับ</a>
+</div>
+<div class="registerForm" style='font-family: "Athiti", sans-serif;'>
+
+      <h1 style='text-align: center;'>สมัครสมาชิก</h1><br>
+      <form [formGroup]='regisForm' (ngSubmit)="onSubmit()" >
+      <div class="d-flex justify-content-center">
+        <div class='formLabel' >
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>ชื่อผู้ใช้</label> <br>
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>ชื่อจริง</label> <br>
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>นามสกุล</label> <br>
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>อาชีพ</label> <br>
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>รายรับ/เดือน</label> <br>
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>อีเมล</label> <br>
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>รหัสผ่าน</label> <br>
+          <label style='font-family: "Athiti", sans-serif; font-size: 90%;'>ยืนยันรหัสผ่าน</label> <br>
+        </div >
+
+        <div class='formInput'>
+          <input type='text' formControlName="username" placeholder='โปรดระบุ' maxlength=20 style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+          <input type='text' formControlName="firstName" placeholder='โปรดระบุ' maxlength=20 style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+          <input type='text' formControlName="lastName" placeholder='โปรดระบุ' maxlength=20 style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+          <input type='text' formControlName="career" placeholder='โปรดระบุ' maxlength=30 style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+          <input type='number' formControlName="income_p_m" placeholder='โปรดระบุ' style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+          <input type='email' formControlName="email" placeholder='โปรดระบุ' style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+          <input type='text' formControlName="password" placeholder='โปรดระบุ' maxlength=20 style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+          <input type='text' formControlName="confPw" placeholder='โปรดระบุ' maxlength=20 style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center" style='height: 1.5em'>
+        <p style='font-size: 13px; line-height: 3em;'>{{responseStr}}</p>
+      </div>
+      <br>
+      <div class="d-flex justify-content-center">
+        <input type="submit" value='สมัครใช้งาน' style='font-family: "Athiti", sans-serif; margin:auto; font-size:13px; padding: 5px 15px; background-color: white; border: 1px solid white; border-radius: 10px; overflow: hidden;'>
+      </div>
+      </form>
+
+</div>

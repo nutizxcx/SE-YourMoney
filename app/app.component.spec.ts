@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'monthly-free'`, () => {
+  it(`should have as title 'YourMoney'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('monthly-free');
+    expect(app.title).toEqual('YourMoney');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('monthly-free app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('YourMoney app is running!');
   });
 });

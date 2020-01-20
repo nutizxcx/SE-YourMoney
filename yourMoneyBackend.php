@@ -2,6 +2,7 @@
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Headers: *');
     header('Content-Type: application/json');
+    header('Content-Type: text/html; charset=utf-8_bin');
 
     date_default_timezone_set('Asia/Bangkok');
     $requestUrl = basename($_SERVER['HTTP_REFERER']);
@@ -9,7 +10,10 @@
                 if(mysqli_connect_errno()){
                     echo "Failed to connect to MySQL: " . mysqli_connect_errno();
     }
+    mysqli_query($con,"SET CHARACTER SET UTF8");
     
+
+
 
     
     
@@ -204,17 +208,7 @@
             $input = file_get_contents('php://input');
             $postRequest = json_decode($input);
                 if($postRequest->mode == 1){
-                    // $sql = 'SELECT * FROM account a
-                    //         LEFT JOIN account_bank ab
-                    //         ON a.username = ab.username
-                    //         LEFT JOIN bank b
-                    //         ON ab.bank_id = b.bank_id
-                    //         LEFT JOIN account_monthly_fee amf
-                    //         ON a.username = amf.username
-                    //         LEFT JOIN monthly_fee mf
-                    //         ON amf.fee_id = mf.fee_id
-                    //         WHERE a.username = "'.$postRequest->username.'"
-                    //         ';
+                   
                     $sql = 'SELECT * FROM account WHERE username = "'.$postRequest->username.'"';
                     $result = mysqli_query($con, $sql);
                     if($row = mysqli_fetch_array($result)){
@@ -256,21 +250,22 @@
                 }
         break;
 
+        //////////////////////////////////////////////////////
+
         case 'edit-monthly-fee':
             $input = file_get_contents('php://input');
             $postRequest = json_decode($input);
-            $username = $postRequest->username;
-            $fee_id = $postRequest->fee_id;
-            $fee_name = $postRequest->fee_id;
-            $fee_price = (int)$postRequest->fee_price;
-            $fee_period = (int)$postRequest->fee_period;
-            $fee_type = $postRequest->fee_type;
-
-            if($postRequest = json_decode($input)){
+            if($postRequest->mode == 1){
+                $username = $postRequest->username;
+                $fee_id = $postRequest->fee_id;
+                $fee_name = $postRequest->fee_name;
+                $fee_price = (int)$postRequest->fee_price;
+                $fee_period = (int)$postRequest->fee_period;
+                $fee_type = $postRequest->fee_type;
                 $sql = "UPDATE monthly_fee m 
                     INNER JOIN account_monthly_fee a ON a.fee_id = m.fee_id 
                     SET m.fee_name = '$fee_name' ,m.fee_price= '$fee_price',m.fee_period='$fee_period' ,m.fee_type='$fee_type'
-                    WHERE a.username='".$username."' AND a.fee_id = '".$fee_id."';"
+                    WHERE a.username='".$username."' AND a.fee_id = '".$fee_id."'";
                 $result = mysqli_query($con, $sql);
                 $currentTimeinSeconds = time();  
                 $currentDateAndTime = date('Y-m-d H:i:s',$currentTimeinSeconds) ;
@@ -278,20 +273,16 @@
                             VALUES ('$username','$currentDateAndTime','edited-monthly-fee') ";
                 mysqli_query($con,$sql);
             }else{
+                $fee_id = $postRequest->fee_id;
                 $sql = "SELECT fee_name,fee_price,fee_period,fee_type
                         FROM monthly_fee
-                        WHERE username = '".$username."'
-                        AND fee_id = '".$fee_id."' ";
+                        WHERE fee_id = '".$fee_id."' ";
 
                 $result = mysqli_query($con,$sql);
                 if($row = mysqli_fetch_array($result)){
                 }
                 echo json_encode($row);
             }
-            
-
-
-
         break;
 
         case 'add-monthly-fee':
@@ -301,15 +292,17 @@
             $fee_name = $postRequest->fee_name;
             $fee_price = (int)$postRequest->fee_price;
             $fee_period = (int)$postRequest->fee_period;
+            $fee_type = $postRequest->fee_type;
             //insert to table monthly_fee
-            $sql = "INSERT INTO monthly_fee (monthly_fee.fee_name,monthly_fee.fee_price,monthly_fee.fee_period,monthly_fee.fee_type) VALUES ('$fee_name','$fee_price','$fee_period','$fee_type');"
+            $sql = "INSERT INTO monthly_fee (monthly_fee.fee_name,monthly_fee.fee_price,monthly_fee.fee_period,monthly_fee.fee_type) VALUES ('$fee_name','$fee_price','$fee_period','$fee_type')";
             $result = mysqli_query($con, $sql);
+
+            $sql = "SELECT fee_id FROM monthly_fee WHERE fee_name = '".$fee_name."' AND fee_price= '".$fee_price."' AND fee_period='".$fee_period."' AND fee_type='".$fee_type."' ";
+            
+            $result = mysqli_query($con,$sql);
+            $fee_id = mysqli_fetch_array($result);
             // insert to table account_monthly_fee
-            $sql = "INSERT INTO account_monthly_fee (username,fee_id) VALUES ('".$username."',SELECT fee_id 
-                                                                                            FROM monthly_fee 
-                                                                                            WHERE fee_name = '".$fee_name."' AND fee_price= '".$fee_price."' 
-                                                                                            AND fee_period='".$fee_period."'
-                                                                                            AND fee_type='".$fee_type."');"
+            $sql = "INSERT INTO account_monthly_fee (username,fee_id) VALUES ('".$username."','".$fee_id[0]."')";
             $result = mysqli_query($con, $sql);
 
             $currentTimeinSeconds = time();  
@@ -319,22 +312,123 @@
                 mysqli_query($con,$sql);
         break;
 
-        case 'show-monthly-fee':
+        case 'add-new-credit':
             $input = file_get_contents('php://input');
             $postRequest = json_decode($input);
-            $username = $postRequest->username;
-            $sql = "SELECT m.fee_name,m.fee_price,m.fee_period ,m.fee_type
-            FROM monthly_fee m 
-            INNER JOIN account_monthly_fee a ON m.fee_id = a.fee_id 
-            INNER JOIN account c ON a.username = c.username 
-            WHERE a.username='".$username."';"
-            $result = mysqli_query($con, $sql);
-
-            $currentTimeinSeconds = time();  
-                $currentDateAndTime = date('Y-m-d H:i:s',$currentTimeinSeconds) ;
-                $sql = "INSERT INTO activity_log
-                            VALUES ('$username','$currentDateAndTime','show-monthly-fee') ";
+            $credit_type = $postRequest->typeCredit;
+            $credit_name = $postRequest->nameCredit;
+            $company_name = $postRequest->nameBank;
+            $time_period = $postRequest->Time;
+            $credit_limit = $postRequest->LimitRate;
+            $credit_minimum_income = $postRequest->Minimumincome;
+            $credit_interest = $postRequest->Interest;
+            $company_name_Check = 0;
+            $sql = "SELECT * FROM company WHERE company_name = '".$company_name."' ";
+            $result = mysqli_query($con,$sql);
+            //check company
+            while($row = mysqli_fetch_array($result)){
+                if($row['company_name'] == $company_name){
+                    $company_id = $row['company_id'];
+                    $company_name_Check++;
+                }
+            }
+            //insert to table credit
+            $sql = "INSERT INTO credit VALUES (null,'$credit_name','$credit_interest','$time_period','$credit_limit','$credit_minimum_income','$credit_type')";
+            mysqli_query($con,$sql);
+            if($company_name_Check > 0){
+                
+                $sql = "SELECT MAX(c.credit_id)
+                FROM credit c
+                WHERE c.credit_name='".$credit_name."'
+                AND c.credit_interest='".$credit_interest."'
+                AND c.time_period='".$time_period."'
+                AND c.credit_limit='".$credit_limit."'
+                AND c.credit_minimum_income='".$credit_minimum_income."'
+                AND c.credit_type='".$credit_type."'";
+                $result = mysqli_query($con, $sql);
+                $credit_id = mysqli_fetch_array($result)[0];
+                
+                //insert to table credit_company
+                $sql = "INSERT INTO credit_company VALUES ('".$credit_id."','".$company_id."')";
+                mysqli_query($con, $sql);
+            }else{
+                //insert to table company
+                $sql = "INSERT INTO company VALUES (null,'$company_name')";
                 mysqli_query($con,$sql);
+                //get company_id
+                $sql = "SELECT * FROM company WHERE company_name = '".$company_name."' ";
+                $result = mysqli_query($con,$sql);
+                while($row = mysqli_fetch_array($result)){
+                    if($row['company_name'] == $company_name){
+                        $company_id = $row['company_id'];
+                    }
+                }
+
+                print_r($company_id);
+
+                $sql = "SELECT c.credit_id 
+                FROM credit c
+                WHERE c.credit_name='".$credit_name."'
+                AND c.credit_interest='".$credit_interest."'
+                AND c.time_period='".$time_period."'
+                AND c.credit_limit='".$credit_limit."'
+                AND c.credit_minimum_income='".$credit_minimum_income."'
+                AND c.credit_type='".$credit_type."'";
+                $result = mysqli_query($con, $sql);
+                $credit_id = mysqli_fetch_array($result)[0];
+
+                //insert to table credit_company
+                $sql = "INSERT INTO credit_company VALUES ('".$credit_id."','$company_id')";
+                mysqli_query($con, $sql);
+
+            }
+            
+        break;
+
+
+        case 'monthly-fee':
+          
+                $array[] = array();
+                $i = 0;
+                $input = file_get_contents('php://input');
+                $postRequest = json_decode($input);
+                if($postRequest->mode == 1){
+                    $username = $postRequest->username;
+                    $sql = "SELECT m.fee_id, m.fee_name,m.fee_price,m.fee_period ,m.fee_type
+                    FROM monthly_fee m 
+                    INNER JOIN account_monthly_fee a ON m.fee_id = a.fee_id 
+                    INNER JOIN account c ON a.username = c.username 
+                    WHERE a.username='".$username."'";
+                    $result = mysqli_query($con, $sql);
+                    while($row = mysqli_fetch_array($result)){
+                        $array[$i] = $row;
+                        $i++;
+                    }
+
+                    $currentTimeinSeconds = time();  
+                        $currentDateAndTime = date('Y-m-d H:i:s',$currentTimeinSeconds) ;
+                        $sql = "INSERT INTO activity_log
+                                    VALUES ('$username','$currentDateAndTime','show-monthly-fee') ";
+                        mysqli_query($con,$sql);
+
+                    echo json_encode($array);
+            }else if($postRequest->mode == 2){
+                    "DELETE b.*
+                    FROM account a
+                    INNER JOIN account_monthly_fee b
+                    ON a.username = b.username
+                    INNER JOIN monthly_fee c
+                    ON b.fee_id = c.fee_id
+                    WHERE b.fee_id = '".$fee_id."' AND b.username = '".$username."'";
+                    $result = mysqli_query($con, $sql);
+                    
+                    $currentTimeinSeconds = time();  
+                        $currentDateAndTime = date('Y-m-d H:i:s',$currentTimeinSeconds) ;
+                        $sql = "INSERT INTO activity_log
+                                    VALUES ('$username','$currentDateAndTime','delete-monthly-fee') ";
+                        mysqli_query($con,$sql);
+            }
+
         break;
 
         case 'delete-monthly-fee':
@@ -349,7 +443,7 @@
             ON a.username = b.username
             INNER JOIN monthly_fee c
             ON b.fee_id = c.fee_id
-            WHERE b.fee_id = '".$fee_id."' AND b.username = '".$username."';"
+            WHERE b.fee_id = '".$fee_id."' AND b.username = '".$username."'";
             $result = mysqli_query($con, $sql);
 
             $currentTimeinSeconds = time();  
@@ -360,77 +454,196 @@
 
         break;
 
-        case 'show-credit':
+        case 'edit-credit':
             $input = file_get_contents('php://input');
             $postRequest = json_decode($input);
-            $username = $postRequest->username;
-
-            $sql = "SELECT c.credit_name,a.time_period,a.total_payment,a.monthly_payment
-            FROM credit c
-            INNER JOIN account_credit a ON c.credit_id = a.credit_id 
-            INNER JOIN account b ON a.username = b.username 
-            WHERE a.username='".$username."';"
-            $result = mysqli_query($con, $sql);
+            if($postRequest->mode ==1){
+                $credit_id = $postRequest->data;
+                $sql = "SELECT c.* , cpn.company_name
+                        FROM credit c 
+                        INNER JOIN credit_company cc
+                        ON c.credit_id = cc.credit_id
+                        INNER JOIN company cpn
+                        ON cpn.company_id = cc.company_id
+                        WHERE c.credit_id = '".$credit_id."' ";
+                // $sql = "INSERT INTO credit VALUES (null,'$credit_name','$credit_interest','$time_period','$credit_limit','$credit_minimum_income','$credit_type')";
+                $result = mysqli_query($con, $sql);
+                $row = mysqli_fetch_array($result);
+                echo json_encode($row);
+            }else {
+                $data = $postRequest->data;
+                $credit_id = $postRequest->credit_id;
+                $sql = "UPDATE credit c
+                        INNER JOIN credit_company cc
+                        ON c.credit_id = cc.credit_id
+                        INNER JOIN company cpn
+                        ON cc.company_id = cpn.company_id
+                        SET c.credit_type = '$data->typeCredit', c.credit_name = '$data->nameCredit'
+                            , cpn.company_name = '$data->nameBank', c.time_period = '$data->Time'
+                            , c.credit_limit = '$data->LimitRate', c.credit_minimum_income = '$data->Minimumincome'
+                            , c.credit_interest = '$data->Interest'
+                        WHERE c.credit_id = '$credit_id'
+                        ";
+                
+                mysqli_query($con, $sql);
+                
+            }
         break;
 
         //มีต่อ
-        case 'credit-query':
+        case 'credit':
+            $arr[] = array();
+            $i=0;
             $input = file_get_contents('php://input');
             $postRequest = json_decode($input);
-            $username = $postRequest->username;
+            $username = $postRequest;
             
             // โชว์creditทั้งหมดที่usernameนี้ไม่มี
-            $sql = "SELECT c.credit_name ,e.company_name
+            $sql = "SELECT c.credit_name ,e.company_name, c.credit_interest
             FROM credit c
             INNER JOIN account_credit a ON c.credit_id != a.credit_id 
             INNER JOIN account b ON a.username = b.username 
             INNER JOIN credit_company d ON c.credit_id = d.credit_id
             INNER JOIN company e ON  d.company_id = e.company_id
-            WHERE a.username='".$username."';"
+            WHERE a.username='".$username."'";
             $result = mysqli_query($con, $sql);
+            while($row = mysqli_fetch_array($result)){
+                $arr[$i] = $row;
+                $i++;
+            }
+            if($i > 0) echo json_encode($arr);
+            else{
+                $sql = "SELECT c.credit_name, cpn.company_name, c.credit_interest
+                  FROM credit c
+                  INNER JOIN credit_company cc
+                  ON c.credit_id = cc.credit_id
+                  INNER JOIN company cpn
+                  ON cc.company_id = cpn.company_id";
+                $result = mysqli_query($con,$sql);
+                while($row = mysqli_fetch_array($result)){
+                    $arr[$i] = $row;
+                    $i++;
+                }
+                echo json_encode($arr);
+            }
         break;
 
-        case 'summarize-monthly-fee':
-            $sql = "SELECT DISTINCT monthly_fee.fee_type FROM monthly_fee;"
+
+
+        case 'admin-sum-monthlyfee':
+            // $array[] = array();
+            // $i = 0;
+            // $sql = "SELECT DISTINCT monthly_fee.fee_type FROM monthly_fee";
+            // $result = mysqli_query($con, $sql);
+            // while( $row = mysqli_fetch_array($result)){
+            //     $array[$i] = $row;
+            //     $i++;
+            // }
+
+            $sql = "SELECT COUNT(*) AS total_monthly_count FROM monthly_fee";
             $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($result);
+            echo json_encode($row);
         break;
 
-        case 'monthly-fee-detail':
+        case 'admin-detail-monthlyfee':
+            $arr[] = array();
+            $i = 0;
             $input = file_get_contents('php://input');
             $postRequest = json_decode($input);
-            $fee_type = $postRequest->fee_type;
-
+            $fee_type = $postRequest;
             $sql = "SELECT a.fee_name, b.username
             FROM monthly_fee a
             INNER JOIN account_monthly_fee b ON a.fee_id = b.fee_id
-            WHERE a.fee_type='".$fee_type."';"
+            WHERE a.fee_type='".$fee_type."'";
             $result = mysqli_query($con, $sql);
+            while($row = mysqli_fetch_array($result)){
+                $arr[$i] = $row;
+                $i++;
+            }
+
+            echo json_encode($arr);
+            // if($i >0)   echo json_encode($arr);
+            // else echo json_encode('empty');
         break;
 
-        case 'summarize-credit':
-            $sql = "SELECT a.credit_name ,c.company_name
-            FROM credit a
-            INNER JOIN credit_company b ON a.credit_id = b.credit_id
-            INNER JOIN company c ON b.company_id = c.company_id;"
-            $result = mysqli_query($con, $sql);
-        break;
-
-        case 'monthly-fee-detail':
+        case 'admin-credit':
             $input = file_get_contents('php://input');
             $postRequest = json_decode($input);
-            $credit_type = $postRequest->credit_type;
+            if($postRequest->mode == 1){
+                $arr[] = array();
+                $i = 0;
+                $sql = "SELECT a.credit_name ,c.company_name, a.credit_interest, a.credit_id
+                FROM credit a
+                INNER JOIN credit_company b ON a.credit_id = b.credit_id
+                INNER JOIN company c ON b.company_id = c.company_id";
+                $result = mysqli_query($con, $sql);
+                while($row = mysqli_fetch_array($result)){
+                    $arr[$i] = $row;
+                    $i ++ ;
+                }
+                echo json_encode($arr);
+            }else if($postRequest->mode == 2){
 
-            $sql = "SELECT a.credit_name, b.username
+                $data = $postRequest->data;
+                for($i = 0; $i < sizeof($data); $i++){
+
+                    $sql = 'SELECT credit_id FROM credit WHERE credit_name = "'.$data[$i]->credit_name.'" ';
+                    $result = mysqli_query($con,$sql);
+                    $credit_id = mysqli_fetch_array($result)[0];
+                    
+                    $sql = 'DELETE FROM credit_company WHERE credit_id = "'.$credit_id.'" ';
+                    mysqli_query($con, $sql);
+
+                    $sql = 'DELETE FROM credit WHERE credit_name = "'.$data[$i]->credit_name.'" ';
+                    mysqli_query($con, $sql);
+                }
+                
+
+            }
+
+        break;
+
+        case 'admin-credit-check-user':
+            $arr[] = array();
+            $i = 0;
+            $input = file_get_contents('php://input');
+            $postRequest = json_decode($input);
+            
+            $credit_id = $postRequest;
+            $sql = "SELECT c.* , cpn.company_name
+            FROM credit c
+            INNER JOIN credit_company cc
+            ON c.credit_id = cc.credit_id
+            INNER JOIN company cpn
+            ON cc.company_id = cpn.company_id
+            WHERE c.credit_id = '".$credit_id."' ";
+            $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($result);
+            $arr[$i] = $row;
+            $i++;
+
+            $sql = "SELECT b.username, b.total_payment
             FROM credit a
             INNER JOIN account_credit b ON a.credit_id = b.credit_id
-             WHERE a.credit_type='".$credit_type."';"
+             WHERE a.credit_id= '".$credit_id."'";
             $result = mysqli_query($con, $sql);
+            while($row = mysqli_fetch_array($result)){
+                $arr[$i] = $row;   
+                $i ++;
+            }
+            echo json_encode($arr);
+
         break;
 
 
-
-
+       
     }
     mysqli_close($con);
     return;
+
+    
+
+
+
 ?>

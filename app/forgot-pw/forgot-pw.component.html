@@ -1,0 +1,16 @@
+<div class="forgot-pw" style='font-family: "Athiti", sans-serif;'>
+  <br>
+  <h1 style='text-align: center;'>ลืมรหัสผ่าน</h1>
+  <p>ระบบจะส่งรหัสผ่านใหม่ไปทางอีเมล</p> <br>
+  <form [formGroup]='forgotForm' (ngSubmit)='onSubmit()' >
+  <label style='margin:5%;'><b>อีเมล</b></label>
+  <input type='email' formControlName="email" placeholder='email' style='margin: 0 0 15px 0; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'> <br>
+  <div class="d-flex justify-content-center" style='height: 2em; margin-top: 0.5em;'>
+    <p style='font-size: 13px; '>{{responseStr}}</p>
+</div>
+  <input type="submit" value='ยืนยัน' style='font-family: "Athiti", sans-serif; margin:auto; font-size:13px; padding: 5px 15px; background-color: white; border: 1px solid white; border-radius: 10px; overflow: hidden;'> <br><br>
+  </form>
+  <label>กลับไปหน้า</label>
+  <a routerLink='/login' style='color: white; margin-left: 10px;'><u>ล็อกอิน</u></a>
+</div>
+

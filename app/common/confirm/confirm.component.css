@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+
+#exampleModalCenter{
+    width: 100%;
+    border-radius: 20vw;
+    margin: auto;
+    font-family: 'Prompt', sans-serif;
+}
+.modal-header{
+    border: none;
+}
+#modal-header{
+    width: 80%;
+    float: right;
+    margin-top: 2%;
+
+}
+
+.modal-footer{
+    border: none;
+    padding: 0%;
+}
+
+#textEdit{
+    margin: auto;
+    text-align: center;
+}
+
+#buttonEdit1{
+    border-radius: 3vw;
+    margin: 5%;
+    margin-top: 0%;
+    background-color: salmon;
+    border: none;
+}
+
+#buttonEdit{
+    border-radius: 3vw;
+    margin: 5%;
+    margin-top: 0%;
+    border: none;
+    background-color: #1AA6B7;
+}
+
+#blockModal{
+    background-color: white;
+    border-radius: 20px;
+    width: 80vw;
+    margin: auto;
+}
+
+#icon{
+    width: 100%;
+}

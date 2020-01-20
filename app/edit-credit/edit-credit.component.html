@@ -1,0 +1,110 @@
+<div  id="body">
+    <div class="Page-box-title d-flex align-items-center" style="display: flex;">
+        <i (click)="backToAdminCheckUser(data.credit_id)" class="fas fa-angle-left" ></i>
+        <div class="page-title">แก้ไขสินเชื่อ</div>
+    </div>
+    <!--Close row-->
+    <div id="boxall" class="row">
+        <form [formGroup]="CreditForm" (ngSubmit)="formValidation()">
+            <div class="form-row d-flex justify-content-center">
+                <div id="formall">
+
+                        <label for="InputName">ประเภทสินเชื่อ</label>
+                        <select  class="form-control" id="Inputdate" formControlName="typeCredit" placeholder="30">
+                            <option>สินเชื่อบ้าน</option>
+                            <option>สินเชื่อรถ</option>
+                            <option>สินเชื่อบุคคล</option>
+                            <option>สินเชื่ออเนกประสงค์</option>
+                            <option>อื่นๆ</option>
+                        </select>
+                        <div *ngIf="!isValid0" class="alert alert-danger">
+                            <div id="text-alert" *ngIf="!isValid0">Category is required.</div>
+                        </div>
+
+                    <label for="InputName_M">ชื่อสินเชื่อ</label>
+
+                    <input  type="text" class="form-control" id="InputName_M" formControlName="nameCredit" value= "{{data.credit_name}}"
+                        placeholder="สินเชื่อ Citi Personal Loan" >
+                    <div *ngIf="!isValid1" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid1">Name is required.</div>
+                    </div>
+
+                    <label for="InputName_M">ธนาคารเจ้าของสินเชื่อ</label>
+
+                    <input  type="text" class="form-control" id="InputName_M" formControlName="nameBank" value ="{{data.company_name}}"
+                        placeholder="CitiBANK" >
+                    <div *ngIf="!isValid2" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid2"> Description is required.</div>
+                    </div>
+
+                    <label for="InputName_M">ระยะเวลาการกู้</label>
+
+                    <input  type="text" class="form-control" id="InputName_M" formControlName="Time" value ="{{data.time_period}}"
+                        placeholder="รวมอายุแล้วไม่เกิน 60 ปี" >
+                    <div *ngIf="!isValid3" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid3"> Description is required.</div>
+                    </div>
+
+                    <label for="InputName_M">วงเงินกู้</label>
+
+                    <input  type="text" class="form-control" id="InputName_M" formControlName="LimitRate" value = "{{data.credit_limit}}"
+                        placeholder="สูงสุด 5 เท่าของรายได้แต่ไม่เกิน 1,000,000 บาท" >
+                    <div *ngIf="!isValid4" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid4"> Description is required.</div>
+                    </div>
+
+                    <label for="InputName_M">รายได้ขั้นต่ำ</label>
+
+                    <input type="text" class="form-control" id="InputName_M" formControlName="Minimumincome" value = "{{data.credit_minimum_income}}"
+                        placeholder="20,000 บาท / เดือน" >
+                    <div *ngIf="!isValid5" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid5"> Description is required.</div>
+                    </div>
+
+                    <label for="InputName_M">ดอกเบี้ย</label>
+
+                    <input type="text" class="form-control" id="InputName_M" formControlName="Interest" value ="{{data.credit_interest}}"
+                        placeholder="17%">
+                    <div *ngIf="!isValid6" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid6"> Description is required.</div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                    <button id="submit" type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#exampleModalCenter" (click)="formValidation() " [disabled] = "!submit">บันทึก</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop=false
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="blockModal">
+                <div class="modal-header" class="form-row d-flex justify-content-center">
+                    <div id="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="icon" class="form-row d-flex justify-content-center" style="color:skyblue;"><i class="far fa-smile"></i></div>
+                    <div id="textEdit">
+                        <p><label class="modal-title" id="exampleModalCenterTitle">ยืนยันการแก้ไขสินเชื่อ</label></p>
+                    </div>
+                </div>
+                <div class="modal-footer" class="form-row d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="buttonEdit1">ปิด</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="saveEdit()"
+                        id="buttonEdit">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -2,57 +2,34 @@
     <div class= "Page-box-title">
       <label class="page-title">ค่าบริการรายเดือน</label>
     </div>
-  
-    <div class="container">
-      <div id="boxall" class="row">
-        <div id="block1" class="col-xs-12" routerLink ='/edit-monthly-fee'>
-          <label id="head">NETFLIX</label>
-          <label id="delete">x</label>
-          <p id="text1"><label>ประเภท อินเตอร์เทนเมนท์</label></p>
-          <p id="text1">
-            <label>ค่าบริการรายเดือน</label>
-            <label id="text2">300 บาท/เดือน</label></p>
-          <p id="text1">
-            <label>ชำระภายในวันที่</label>
-            <label>&nbsp; 15</label>
-            <label id="text3">เหลือเวลาอีก 5 วัน</label>
-          </p>
-        </div>
-        <!--close block1-->
-        <div id="block1" class="col-xs-4">
-          <label id="head">NETFLIX</label>
-          <label id="delete">x</label>
-          <p id="text1"><label>ประเภท อินเตอร์เทนเมนท์</label></p>
-          <p id="text1">
-            <label>ค่าบริการรายเดือน</label>
-            <label id="text2">300 บาท/เดือน</label></p>
-          <p id="text1">
-            <label>ชำระภายในวันที่</label>
-            <label>&nbsp; 15</label>
-            <label id="text3">เหลือเวลาอีก 5 วัน</label>
-          </p>
-        </div>
-        <!--close block2-->
-      
-    <!--<div [ngClass]=" isEmpty ? 'empty' : 'container' ">
-     <div id="boxall" class="row" *ngFor ='let a of data'>
-        <div id="block1" class="col-xs-12">
-            <label id="head">{{a.fee_name}}</label>
-            <label id="delete">x</label>
+
+
+      <div id="boxall" class="row" style="padding:7% 0;">
+
+
+    <div [ngClass]=" isEmpty ? 'empty' : 'container' ">
+
+        <div id="block1" *ngFor ='let a of monthly_fee; let i = index'   class="col-xs-12">
+        <div class="col-xs-12"  (click)="chooseMonthlyFee(a.fee_id)">
+            <label id="head" style="font-size: 17px;"><b>{{a.fee_name}}</b></label>
+            <label id="delete" (click)="delMonthlyFee()">x</label>
             <p id="text1">
                 <label>ค่าบริการรายเดือน</label>
-                <label id="text2">{{a.value}} บาท/เดือน</label></p>
+                <label id="text2"><b>{{a.fee_price}}</b> บาท/เดือน</label></p>
             <p id="text1">
-                <label>ชำระภายในวันที่</label>
-                <label>{{a.day}}</label>
+                <label>ชำระภายในวันที่ {{a.fee_period}}</label>
                 <label id="text3">เหลือเวลาอีก 5 วัน</label>
             </p>
-        </div>
-  
-        <label [ngClass]=" isEmpty ? '' : 'empty' ">ไม่มีค่าบริการรายเดือน</label> -->
-  
-    <div id="add" class="col-xs-4">
-      <a routerLink ='/add-monthly-fee'>+ เพิ่มบริการรายเดือน</a>
+          </div>
+          </div>
+
+
     </div>
-    </div>
-  </div>
+    <label [ngClass]=" isEmpty ? '' : 'empty' ">ไม่มีค่าบริการรายเดือน</label>
+
+<a routerLink ='/add-monthly-fee' style="font-size: 13px; margin-left: 50%;">+ เพิ่มบริการรายเดือน</a>
+</div>
+
+</div>
+
+
