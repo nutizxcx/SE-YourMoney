@@ -1,0 +1,69 @@
+<div id="body">
+    <div class= "Page-box-title">
+      <label class="page-title">ค่าบริการรายเดือน</label>
+    </div>
+
+
+      <div id="boxall" class="row" style="padding:7% 0;">
+
+
+    <div [ngClass]=" isEmpty ? 'empty' : 'container' ">
+
+        <div id="block1" *ngFor ='let a of monthly_fee; let i = index'   class="col-xs-12">
+        <div class="col-xs-12"  >
+            <label id="head" style="font-size: 17px;" (click)="chooseMonthlyFee(a.fee_id)"><b>{{a.fee_name}}</b></label>
+            <label id="delete" data-toggle="modal"
+            data-target="#exampleModalCenter" (click)="updateDataToDel(a.fee_id)" >x</label>
+            <p id="text1">
+                <label>ค่าบริการรายเดือน</label>
+                <label id="text2"><b>{{a.fee_price}}</b> บาท/เดือน</label></p>
+            <p id="text1">
+                <label>ชำระภายในวันที่ {{a.fee_period}}</label>
+                <label id="text3">เหลือเวลาอีก 5 วัน</label>
+            </p>
+          </div>
+          </div>
+
+
+    </div>
+    <label [ngClass]=" isEmpty ? '' : 'empty' ">ไม่มีค่าบริการรายเดือน</label>
+
+<a routerLink ='/add-monthly-fee' style="font-size: 13px; margin-left: 50%;">+ เพิ่มบริการรายเดือน</a>
+</div>
+
+</div>
+
+
+
+
+
+<!-- Button trigger modal -->
+<div id="bl">
+      </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop = "false"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" id="blockModal">
+                  <div class="modal-header" class="form-row d-flex justify-content-center">
+                      <div id="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div id="icon" class="form-row d-flex justify-content-center" style="color: salmon; "><i class="far fa-sad-tear"></i></div>
+                      <div id="textEdit">
+                          <p><label class="modal-title" id="exampleModalCenterTitle">ยืนยันการลบข้อมูล</label></p>
+                      </div>
+                  </div>
+                  <div class="modal-footer" class="form-row d-flex justify-content-center">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="buttonEdit1">ยกเลิก</button>
+                      <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="delMonthlyFee()"
+                          id="buttonEdit">ยืนยัน</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+

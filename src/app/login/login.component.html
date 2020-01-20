@@ -1,0 +1,58 @@
+
+<div [ngClass]="isClickLogin ? 'hide':'click-to-login' " >
+  <h3 >YOUR MONEY</h3> <br>
+  <button (click)='displayLoginForm()' style='font-family: "Athiti", sans-serif; font-size:13px; padding: 5px 75px; background-color: white; border: 1px solid white; border-radius: 10px;'>ล็อกอิน</button> <br><br>
+  <p style='font-family: "Athiti", sans-serif; font-size: 15px;'>ยังไม่มีบัญชี ? <b><u><a routerLink='/register' style='color:white; '>สมัครใช้งาน</a></u></b></p>
+
+</div>
+
+<button id="openModalButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style='display: none;'></button>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body" style='text-align: center;'>
+              <p style='margin: 0; padding: 0;'>{{feedbackStr}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div [ngClass]="isClickLogin ? 'loginForm':'hide'">
+  <p style='font-family: "Athiti", sans-serif; font-size: 33px; '><b>ล็อกอิน</b></p><br>
+    <form action='#' [formGroup]="form" (ngSubmit)="onSubmit($event)">
+      <label style='font-family: "Athiti", sans-serif; font-size: 15px;'>ชื่อผู้ใช้</label>
+      <input type='text' formControlName="username" placeholder='username' style='margin-left: 29px; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'>
+      <br>
+      <label style='font-family: "Athiti", sans-serif; font-size: 15px;'>รหัสผ่าน</label>
+      <input type='password' formControlName="password" placeholder='password' style='margin-left: 20px; border: 0; outline: 0; background: transparent; border-bottom: 1px solid white; color:white;'>
+      <!-- <input type='checkbox' (click)='show()'> --><br>
+      <div class="d-flex justify-content-center" style='height: 2em; margin-top: 0.5em;'>
+          <p style='font-size: 13px; '>{{responseStr}}</p>
+        </div>
+      <input type='submit' value='ล็อกอิน' style='font-family: "Athiti", sans-serif; font-size:13px; padding: 5px 15px; background-color: white; border: 1px solid white; border-radius: 10px;'><br><br>
+    </form>
+
+    <a routerLink='/forgot-pw' style='font-family: "Athiti", sans-serif; font-size: 15px; color:white;'><u>ลืมรหัสผ่าน</u></a>
+    <p style='font-family: "Athiti", sans-serif; font-size: 15px;' >ยังไม่มีบัญชี ? <b><u><a routerLink='/register' style='color:white;'>สมัครใช้งาน</a></u></b></p>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ท่านต้องการยืนยันหรือไม่?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-primary">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+</div>
+

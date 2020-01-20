@@ -1,0 +1,94 @@
+<div class='bg' >
+<mat-drawer-container class="parent example-container bg-transparent"  autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" style="padding:0;">
+
+                    <div class="head-menu" style="padding: 10px 0 0 10px;"> ตัวเลือก </div>
+                    <div class="menu" style="padding: 10px 0 0 10px;">
+                        <a class="nav-link" style="color: black;"  href="#" ><i class="fas fa-home"></i>    หน้าแรก</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="nav-link" style="color: black;"  routerLink = "/edit-profile" ><i class="fas fa-user-circle"></i>    แก้ไขข้อมูลส่วนตัว</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="nav-link" style="color: black;"  href="#" ><i class="fas fa-money-check-alt"></i>    จัดการบัญชี</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="nav-link" style="color: black;"  href="#" ><i class="fas fa-hand-holding-usd"></i>    ประวัติการเงิน</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="nav-link" style="color: black;"  href="#" ><i class="fas fa-chart-line"></i>    กองทุน</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="nav-link" style="color: black;"  href="#"><i class="fas fa-credit-card"></i>    สินเชื่อ</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="nav-link" style="color: black;"  href="#" ><i class="fas fa-bell"></i>    ค่าบริการรายเดือน</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="nav-link" style="color: black;"  href="#" ><i class="fas fa-feather"></i>    บทความ</a>
+                            <div class="dropdown-divider"></div>
+                    </div>
+
+                    <div class="exit position-fixed fixed-bottom" >
+                            <div class="dropdown-divider"></div>
+                            <a  class="nav-link " style="color: black;" data-toggle="modal"
+                            data-target="#exampleModalCenter"><i class="fas fa-door-open"></i>    ออกจากระบบ</a>
+                    </div>
+
+
+    </mat-drawer>
+
+
+    <div>
+            <nav class="navbar navbar-light shadow-sm p-1 mb-3 bg-white rounded" style="background-color: white; " >
+                    <div>
+                            <button class="navbar-toggler border-0" type="button"mat-button (click)="drawer.toggle()" style='margin:auto;'>
+                                    <span class="navbar-toggler-icon"></span>
+                            </button>
+
+
+                    </div>
+
+            </nav>
+            <div class="id-onnav">
+                    ชื่อผู้ใช้งาน : {{username}}    <i class="fas fa-user-circle"></i>
+            </div>
+
+
+    </div>
+
+    <div class="content-of-nav">
+        <router-outlet></router-outlet>
+      </div>
+
+
+  </mat-drawer-container>
+
+
+</div>
+
+<!-- Button trigger modal -->
+<div id="bl">
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          ออกจากระบบ
+        </button> -->
+      </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop = "false"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" id="blockModal">
+                  <div class="modal-header" class="form-row d-flex justify-content-center">
+                      <div id="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div id="icon" class="form-row d-flex justify-content-center" style="color: salmon; "><i class="far fa-sad-tear"></i></div>
+                      <div id="textEdit">
+                          <p><label class="modal-title" id="exampleModalCenterTitle">คุณต้องการออกจากระบบ?</label></p>
+                      </div>
+                  </div>
+                  <div class="modal-footer" class="form-row d-flex justify-content-center">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="buttonEdit1">ยกเลิก</button>
+                      <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="logout()"
+                          id="buttonEdit">ยืนยัน</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+

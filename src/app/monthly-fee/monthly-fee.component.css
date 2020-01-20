@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+
+#body{
+    margin-top: 5%;
+    font-family: 'Prompt', sans-serif;
+}
+#boxall{
+    display: block;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 15px 5px rgba(126, 126, 126, 0.1);
+    width: 90vw;
+}
+#block1{
+    display: block;
+    margin: 2.5% auto;
+    border-radius: 20px;
+    border: 1px solid	#808080;
+    background-color: #daecf3;
+    padding: 5%;
+
+}
+
+.Page-box-title{
+    background-color: transparent;
+    width: 100vw;
+}
+
+.page-title{
+    font-size: 25px;
+    color: black;
+    padding: 0 0 0 15px;
+    font-weight: bold;
+}
+#head{
+    font-weight: bold;
+}
+#text1{
+    font-size: 13px;
+    margin: 3px;
+    line-height: 0.5em;
+}
+#text2{
+    float: right;
+    line-height: 0.5em;
+
+}
+#text3{
+    float: right;
+    line-height: 0.5em;
+}
+#header{
+    font-size: 20px;
+    font-weight: bold;
+}
+#delete{
+    float: right;
+
+}
+#add{
+    margin: 5px;
+    font-size: 14px;
+    margin-left: 55%;
+}
+
+.empty{
+    display: none;
+}
+
+
+
+#exampleModalCenter{
+    width: 100%;
+    border-radius: 20vw;
+    margin: auto;
+    font-family: 'Prompt', sans-serif;
+}
+.modal-header{
+    border: none;
+}
+#modal-header{
+    width: 80%;
+    float: right;
+    margin-top: 2%;
+
+}
+
+.modal-footer{
+    border: none;
+    padding: 0%;
+}
+
+#textEdit{
+    margin: auto;
+    text-align: center;
+}
+
+#buttonEdit1{
+    border-radius: 3vw;
+    margin: 5%;
+    margin-top: 0%;
+    background-color: salmon;
+    border: none;
+}
+
+#buttonEdit{
+    border-radius: 3vw;
+    margin: 5%;
+    margin-top: 0%;
+    border: none;
+    background-color: #1AA6B7;
+}
+
+#blockModal{
+    background-color: white;
+    border-radius: 20px;
+    width: 80vw;
+    margin: auto;
+}
+
+#icon{
+    width: 100%;
+}

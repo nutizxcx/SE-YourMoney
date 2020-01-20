@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+
+#body{
+    font-family: 'Prompt', sans-serif;
+    margin-top: 7%;
+}
+
+.Page-box-title{
+    background-color: transparent;
+    width: 100vw;
+    margin-bottom: 3%;
+}
+
+.page-title{
+    font-size: 25px;
+    color: black;
+    padding: 0 0 0 15px;
+}
+
+.BOX_Title{
+    background-color: white;
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+}
+
+.Head_Box{
+    background: #022d41;
+    width: 90vw;
+    height: 20%;
+    color: white;
+    font-size: small;
+    padding: 5% 0% 0% 5%;
+}
+label{
+    margin: auto;
+}
+p{
+    margin: auto;
+}
+.box_detail{
+    margin: auto;
+    border:1px solid #808080;
+    padding: 3%;
+    font-size: small;
+}
+
+#arrow{
+    margin-top: 1%;
+    float: right;
+}
+
+.col-xs-12{
+    margin-top: 5%;
+}
+.boxall{
+    width: 80vw;
+    margin: auto;
+}
+
+.searchButton{
+    background: rgba(196, 196, 196, 0.2);
+    background-image: url('https://images.vexels.com/media/users/3/132068/isolated/preview/f9bb81e576c1a361c61a8c08945b2c48-search-icon-by-vexels.png');
+    background-size: 4%;
+    background-position: 3.5%;
+    background-repeat: no-repeat;
+    border: 0px;
+    border-radius: 8px;
+    padding: 1.5% 3% 1.5% 9%;
+    margin: auto;
+    margin: 5% 0 0 0;
+    font-size: 11px;
+    width:100%;
+  }

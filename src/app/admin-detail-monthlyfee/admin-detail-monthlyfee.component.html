@@ -1,0 +1,50 @@
+<div id="body">
+    <div class="Page-box-title">
+        <span class="page-title">สรุปค่าบริการรายเดือน</span>
+    </div>
+    <div class="BOX_Title">
+        <div class="Head_Box">
+            <label>จำนวนค่าบริการรายเดือนทั้งหมด</label>
+            <p><label><span style="font-size: 30px;">{{mf_amount}}</span> รายการ</label></p>
+            <label>อัพเดทครั้งล่าสุด ณ 13.45 น.</label>
+        </div>
+        <div class="boxall">
+            <input class='searchButton' placeholder="ค้นหา">
+            <!-- <div routerLink="" *ngFor='let a of data'>
+            <div routerLink="" class="box_detail">
+                <label>{{a.name}}NETFLIX</label>
+                <i id="arrow" class="fas fa-angle-right"></i>
+            </div>
+        </div> -->
+            <div class="col-xs-12" *ngIf="!isEmpty; else emptyBox">
+
+                <div class="box_detail" *ngFor="let mf of data">
+                    <label>{{mf.fee_name}}</label>
+                    <label id="nameUser" href="#">{{mf.username}}</label>
+                </div>
+
+            </div>
+            <ng-template #emptyBox>
+                <div class="box_detail col-xs-12" style="text-align: center;">
+                    <label >EMPTY BOX</label>
+                </div>
+            </ng-template>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- <div class="d-flex align-items-center" style="padding: 5% 5% 0 5%">
+    <label class="d-flex align-items-center justify-content-center" style="width: 30px; height: 30px; margin:0;">
+        <i class="fas fa-arrow-left"></i></label>
+    <form class="form-inline" class="d-flex align-items-center justify-content-center"
+        style="width:100%;position:relative;margin:0;">
+        <input class="form-control mr-sm-2" type="search" placeholderฐฐ="Search" aria-label="Search"
+            style="border-radius: 100px; ">
+        <label class="d-flex align-items-center justify-content-center"
+            style="position:absolute;top:50%;right:20px;transform: translate(0, -50%);">
+            <i class="fas fa-search"></i></label>
+    </form>
+</div> -->

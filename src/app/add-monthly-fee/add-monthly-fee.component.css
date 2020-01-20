@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+
+#body{
+
+    margin-top: 7%;
+    font-family: 'Prompt', sans-serif;
+}
+#boxall{
+    display: block;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 15px 5px rgba(126, 126, 126, 0.1);
+    width: 90vw;
+}
+
+.Page-box-title{
+    background-color: transparent;
+    width: 100vw;
+}
+
+.page-title{
+    font-size: 25px;
+    color: black;
+    padding: 0 0 0 15px;
+    font-weight: bold;
+}
+
+.fas{
+    margin-left: 15px;
+}
+
+#InputName_M{
+    display: block;
+    margin: auto;
+    width: 260px;
+    padding-left: 5%;
+}
+
+#Inputvalue_M{
+    display: block;
+    margin: auto;
+    width: 260px;
+    padding-left: 5%;
+}
+
+#Inputdate{
+    font-family: 'Prompt', sans-serif;
+    display: block;
+    margin: auto;
+    font-size: 14px;
+    width: 260px;
+}
+
+.modal-title{
+    font-size: 16px;
+}
+
+label{
+    margin-top: 4px;
+}
+
+input{
+    padding: 2px;
+    font-size: 13px;
+}
+
+#submit{
+    display: block;
+    /* margin: auto; */
+    /* margin-top: 5%; */
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Prompt', sans-serif;
+    color: ivory;
+    outline: none;
+    border: none;
+    padding: 3%;
+    width: 80px;
+    background-color:#1AA6B7;
+    cursor: pointer;
+}
+
+#exampleModalCenter{
+  width: 100%;
+  border-radius: 20vw;
+  margin: auto;
+  font-family: 'Prompt', sans-serif;
+}
+.modal-header{
+  border: none;
+}
+#modal-header{
+  width: 80%;
+  float: right;
+  margin-top: 2%;
+
+}
+
+.modal-footer{
+  border: none;
+  padding: 0%;
+}
+
+#textEdit{
+  margin: auto;
+  text-align: center;
+}
+
+#buttonEdit1{
+  border-radius: 3vw;
+  margin: 5%;
+  margin-top: 0%;
+  background-color: salmon;
+  border: none;
+}
+
+#buttonEdit{
+  border-radius: 3vw;
+  margin: 5%;
+  margin-top: 0%;
+  border: none;
+  background-color: #1AA6B7;
+}
+
+#blockModal{
+  background-color: white;
+  border-radius: 20px;
+  width: 80vw;
+  margin: auto;
+}
+
+#icon{
+  width: 100%;
+}
+
+

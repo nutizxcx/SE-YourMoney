@@ -1,0 +1,117 @@
+<div id="body">
+    <div class="Page-box-title">
+        <i class="fas fa-angle-left" routerLink="/monthly-fee"></i>
+        <label class="page-title">แก้ไขค่าบริการรายเดือน</label>
+    </div>
+    <!--Close row-->
+    <div class="container" id="boxall" class="row">
+        <form [formGroup]="monthlyfeeForm" (ngSubmit)="formValidation()">
+            <div class="form-row d-flex justify-content-center">
+                <div id="formall">
+                    <label for="InputName">ประเภทค่าบริการ</label>
+                    <select (change)="formDisable()" class="form-control" id="Inputdate" formControlName="typeMonthlyfee"
+                        placeholder="30">
+                        <option>เอนเตอร์เทนเม้นท์</option>
+                        <option>ค่าโทรศัพท์</option>
+                        <option>ค่าบัตรเครดิต</option>
+                        <option>ค่าผ่อนชำระรถ</option>
+                        <option>ค่าผ่อนชำระบ้าน</option>
+                        <option>ค่าผ่อนชำระอื่น</option>
+                        <option>ค่าประกัน</option>
+                        <option>ค่าเช่า</option>
+                        <option>ค่าสารณูปโภค</option>
+                        <option>อื่นๆ</option>
+                    </select>
+                    <div *ngIf="!isValid4" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid4">Date is required.</div>
+                    </div>
+                    <label for="InputName_M">ชื่อบริการรายเดือน</label>
+                    <input (keyup)="formValidation()" type="text" class="form-control" id="InputName_M"
+                        formControlName="nameMonthlyfee" placeholder="NETFFLIX" value="{{monthly_fee_detail.fee_name}}">
+                    <div *ngIf="!isValid1" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid1">Name is required.</div>
+                    </div>
+                    <label type="text" for="Inputvalue_M">ยอดชำระค่าบริการ</label>
+                    <input (keyup)="formValidation()" type="number" class="form-control" id="Inputvalue_M"
+                        formControlName="valueMonthlyfee" placeholder="300" value="{{monthly_fee_detail.fee_price}}">
+                    <div *ngIf="!isValid2" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid2">Value is required.</div>
+                    </div>
+
+                    <label for="Inputdate">วันที่ครบกำหนดชำระค่าบริการ</label>
+                    <select (change)="formValidation()" class="form-control" id="Inputdate"
+                        formControlName="dateMonthlyfee" placeholder="30">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                    </select>
+                    <div *ngIf="!isValid3" class="alert alert-danger">
+                        <div id="text-alert" *ngIf="!isValid3">Category is required.</div>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="row d-flex justify-content-center">
+                <button id="submit" type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#exampleModalCenter" [disabled]="!submit" >บันทึก</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<!--Close container-->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop=false
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" id="blockModal">
+        <div class="modal-header" class="form-row d-flex justify-content-center">
+            <div id="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="icon" class="form-row d-flex justify-content-center" style="color:skyblue;"><i class="far fa-smile"></i></div>
+            <div id="textEdit">
+                <p><label class="modal-title" id="exampleModalCenterTitle">ยืนยันการแก้ไขค่าบริการรายเดือน</label></p>
+            </div>
+        </div>
+        <div class="modal-footer" class="form-row d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="buttonEdit1">ปิด</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="edit_monthly_fee()"
+                id="buttonEdit">บันทึก</button>
+        </div>
+    </div>
+</div>
+</div>
+
+

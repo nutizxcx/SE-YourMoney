@@ -1,0 +1,5 @@
+<div [ngSwitch]='userType' style='width:100%; height: 100%;'>
+    <app-admin-sidenav *ngSwitchCase="'admin'"></app-admin-sidenav>
+    <app-sidenav-autosize-example *ngSwitchCase="'user'"> </app-sidenav-autosize-example>
+      <router-outlet></router-outlet>
+</div>

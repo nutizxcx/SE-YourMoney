@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+.example-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+
+/* .BG_Home{
+  background-color:white;
+  background-image: url(image/m.png);
+  background-repeat: no-repeat;
+  background-position: -180px;
+  background-size: 500px;
+  height: 800px;
+} */
+
+/* .BG_login{
+  background-color:black;
+  background-image: url(image/m.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300px;
+  height: 100%;
+} */
+
+/* .BG_regis{
+  background-color:black;
+  background-image: url(image/m.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 170%;
+  height: 100%;
+} */
+
+
+  .menu-panel{
+    width: 65vw;
+    height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+  .head-menu{
+    background-color: #189bac;
+    color: white;
+    width: 65vw;
+    height: 7vh;
+  }
+
+  .menu{
+    color: black;
+    background-color: white;
+    width: 65vw;
+  }
+
+  .exit{
+    color: black;
+    background-color: white;
+    width: 65vw;
+  }
+.dim-bg{
+  background-color: black;
+  opacity: 0.7;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.id-onnav{
+  background-color: transparent;
+  height: 5vh;
+  width: 50vw;
+  z-index: 2;
+  position: absolute;
+  top: 2%;
+  margin-left: 50%;
+}
+
+.content-of-nav{
+  width: 100vw;
+}
+
+.bg{
+  width:100%;
+  height: 100%;
+  background-image: url('../m.png');
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  background-position: -180px;
+  background-size: 500px;
+}
+
+
+
+
+#exampleModalCenter{
+    width: 100%;
+    border-radius: 20vw;
+    margin: auto;
+    font-family: 'Prompt', sans-serif;
+}
+.modal-header{
+    border: none;
+}
+#modal-header{
+    width: 80%;
+    float: right;
+    margin-top: 2%;
+
+}
+
+.modal-footer{
+    border: none;
+    padding: 0%;
+}
+
+#textEdit{
+    margin: auto;
+    text-align: center;
+}
+
+#buttonEdit1{
+    border-radius: 3vw;
+    margin: 5%;
+    margin-top: 0%;
+    background-color: salmon;
+    border: none;
+}
+
+#buttonEdit{
+    border-radius: 3vw;
+    margin: 5%;
+    margin-top: 0%;
+    border: none;
+    background-color: #1AA6B7;
+}
+
+#blockModal{
+    background-color: white;
+    border-radius: 20px;
+    width: 80vw;
+    margin: auto;
+}
+
+#icon{
+    width: 100%;
+}
